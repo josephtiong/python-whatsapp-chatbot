@@ -1,17 +1,21 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from a .env file
 
 url = "https://gate.whapi.cloud/messages/text"
 
 payload = {
     "typing_time": 0,
-    "body": "testing text",
+    "body": "New day - new",
     "to": "120363364397326934@g.us"
 
 }
 headers = {
     "accept": "application/json",
     "content-type": "application/json",
-    "authorization": "Bearer "
+    "authorization": f"Bearer {os.getenv('TOKEN')}"
 }
 
 response = requests.post(url, json=payload, headers=headers)
